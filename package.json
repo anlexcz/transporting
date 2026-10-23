@@ -4,11 +4,12 @@
   "version": "0.1.0",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "concurrently -n api,web -c auto \"npm run dev -w @transporting/api\" \"npm run dev -w @transporting/web\"",
+    "dev": "npm run build -w @transporting/shared && concurrently -n api,web -c auto \"npm run dev -w @transporting/api\" \"npm run dev -w @transporting/web\"",
     "build": "npm run build -w @transporting/shared && npm run build -w @transporting/api && npm run build -w @transporting/web",
     "db:init": "npm run db:init -w @transporting/api"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.16",
     "concurrently": "^9.1.2",
     "typescript": "^5.7.3"
   }
